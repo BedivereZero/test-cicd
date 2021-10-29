@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+CICD_ROOT="$(realpath "$(dirname "${BASH_SOURCE[0]}")/..")"
+
+source "${CICD_ROOT}/build/lib/buildah.sh"
+source "${CICD_ROOT}/build/lib/golang.sh"
+source "${CICD_ROOT}/build/lib/version.sh"
+
+cicd::version::get_version_vars
+cicd::golang::build_binary
+cicd::buildah::build_image

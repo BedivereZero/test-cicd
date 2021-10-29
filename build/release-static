@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+CICD_ROOT="$(realpath "$(dirname "${BASH_SOURCE[0]}")/..")"
+
+source "${CICD_ROOT}/build/lib/version.sh"
+source "${CICD_ROOT}/build/lib/golang.sh"
+
+cicd::version::get_version_vars
+cicd::golang::build_binary
