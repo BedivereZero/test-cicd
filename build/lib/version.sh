@@ -18,7 +18,7 @@ cicd::version::get_version_vars() {
 
   CICD_GIT_COMMIT=$(git rev-parse HEAD)
 
-  if git_status=$(git stats --porcelain 2>/dev/null) && [[ -z "${git_status}" ]]; then
+  if git_status=$(git status --porcelain 2>/dev/null) && [[ -z "${git_status}" ]]; then
     CICD_GIT_TREE_STATE="clean"
   else
     CICD_GIT_TREE_STATE="dirty"
